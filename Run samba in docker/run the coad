@@ -1,12 +1,12 @@
-pull docker samba image:
-run: docker pull dperson/samba
+#pull docker samba image:
+    docker pull dperson/samba
 
-check samba image download successful
-run: docker images
-if you see screen already have dperson/samba,this indicates success.
+#check samba image download successful:
+    docker images
+#if you see screen already have dperson/samba,this indicates success.
 
-next,run the docker samba 
-run: sudo docker run -it --name samba  --restart unless-stopped -p 139:139 -p 445:445 \
+#next,run the docker samba:
+   sudo docker run -it --name samba  --restart unless-stopped -p 139:139 -p 445:445 \
             -v /home/pi/fan:/mount \    #in front the ":" is your linux share address,behind ":" is samba in docker address
             -d dperson/samba \          #ready to run images name   
             -u "pi;990404" \            #user name and password
@@ -15,23 +15,22 @@ run: sudo docker run -it --name samba  --restart unless-stopped -p 139:139 -p 44
             -g "write cache size = 262144" \   #it can improve samba spreed
             -s "fan;/mount;yes;no;no;all;pi"   #user name;samab docker share address;browsable = yes；read only = no；guest ok = no；admin users = pi
 
-check docker samba already runing
-run: java docker ps -a
-if you see dperson/samba status:up,this indicates success.
+#check docker samba already runing:
+    docker ps -a
+#if you see dperson/samba status:up,this indicates success.
 
 let enjoy it!
 
 
-start,stop,restart,remove the docker,use this command：
+#start,stop,restart,remove the docker,use this command：
 sudo docker start samba
 sudo docker stop samba
 sudo docker restart samba
 sudo docker rm samba
 
-if you want to see smb.conf
-run: docker exec -it samba bash 
-     apk add nano
-     nano /etc/samba/smb.conf
-you will see the configuration file
-But you are useless to edit this configuration file.
-If you want to edit the configuration, you should edit docker run code.First，you should run stop and rm command.
+#if you want to see smb.conf:
+    docker exec -it samba bash 
+    apk add nano
+    nano /etc/samba/smb.conf
+#you will see the configuration file.But you are useless to edit this configuration file.
+#If you want to edit the configuration, you should edit docker run code.First，you should run stop and rm command.
