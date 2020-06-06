@@ -10,9 +10,23 @@
             -v /home/pi/fan:/mount \    #in front the ":" is your linux share address,behind ":" is samba in docker address
             -d dperson/samba \          #ready to run images name   
             -u "user;password" \        #your user name and password
-            -g "aio read size = 0" \    #it can improve samba spreed
-            -g "aio write size = 0" \    #it can improve samba spreed
-            -g "write cache size = 262144" \   #it can improve samba spreed
+            -g "aio read size = 16384" \    #it can improve samba spreed
+            -g "aio write size = 16384" \    #it can improve samba spreed
+            -g "max xmit = 65536" \
+            -g "large readwrite = yes" \
+            -g "getwd cache = yes" \
+            -g "strict locking = on" \
+            -g "fake oplocks = yes" \
+            -g "oplocks = no" \
+            -g "min receivefile size = 16384" \
+            -g "deadtime = 30" \
+            -g "log file = /var/log/samba/%m.log" \
+            -g "max log size = 50" \
+            -g "write cache size = 262144" \ #it can improve samba spreed
+            -g "disable spoolss = yes" \
+            -g "load printers = no" \
+            -g "socket options = IPTOS_THROUGHPUT SO_KEEPALIVE" \
+            -g "use sendfile = Yes" \
             -s "fan;/mount;yes;no;no;all;pi"   #user name;samab docker share address;browsable = yes；read only = no；guest ok = no；admin users = pi
 
 #check docker samba already runing:
