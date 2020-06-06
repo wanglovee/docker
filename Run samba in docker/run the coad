@@ -23,10 +23,13 @@ let enjoy it!
 
 
 #start,stop,restart,remove the docker,use this command：
-sudo docker start samba
-sudo docker stop samba
-sudo docker restart samba
-sudo docker rm samba
+    sudo docker start samba
+    sudo docker stop samba
+    sudo docker restart samba
+    sudo docker rm samba
+
+#update samba:
+    docker pull dperson/samba
 
 #if you want to see smb.conf:
     docker exec -it samba bash 
