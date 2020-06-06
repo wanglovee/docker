@@ -19,7 +19,7 @@
     docker ps -a
 #if you see dperson/samba status:up,this indicates success.
 
-let enjoy it!
+#Start enjoying it!
 
 
 #start,stop,restart,remove the docker,use this command：
